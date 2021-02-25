@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         buttonFalse.setOnClickListener {
             checkAnswer(false, it)
         }
+        buttonPrev.setOnClickListener {
+            index = (index - 1) % questionBank.size
+            updateQuestion()
+        }
         buttonNext.setOnClickListener {
             index = (index + 1) % questionBank.size
             updateQuestion()
