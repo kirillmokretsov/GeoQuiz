@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">GeoQuiz</string>
-    <string name="question_text">Canberra is the capital of Australia.</string>
     <string name="button_true">True</string>
     <string name="button_false">False</string>
     <string name="answer_true">Correct!</string>
@@ -8,11 +7,12 @@
     <string name="button_next">Next</string>
 
 <!--    Questions -->
+    <string name="question_australia">Canberra is the capital of Australia.</string>
     <string name="question_russia">Moscow is the capital of Russian Federation.</string>
     <string name="question_europe">London is the capital of Great Britain.</string>
     <string name="question_america">Mexico locates in the North America.</string>
     <string name="question_asia">Japan is island nation.</string>
     <string name="question_barbados">Elizabeth II is the queen of Barbados.</string>
-    <string name="question_lake">Lake Sho pretend to be Europe\'s geographical centre of Europe.</string>
+    <string name="question_lake">Lake Sho is pretending to be Europe\'s geographical centre of Europe.</string>
     <string name="question_question">This app includes 8 questions including this.</string>
 </resources>

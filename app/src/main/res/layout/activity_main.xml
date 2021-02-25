@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="24dp"
-        tools:text="@string/question_text"
+        tools:text="@string/question_australia"
         />
 
     <androidx.appcompat.widget.LinearLayoutCompat
