@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textViewQuestion: TextView
     private lateinit var buttonTrue: Button
     private lateinit var buttonFalse: Button
+    private  lateinit var buttonPrev: Button
     private lateinit var buttonNext: Button
 
     private val questionBank = listOf(
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         textViewQuestion = findViewById(R.id.text_view_question)
         buttonTrue = findViewById(R.id.button_true)
         buttonFalse = findViewById(R.id.button_false)
+        buttonPrev = findViewById(R.id.button_prev)
         buttonNext = findViewById(R.id.button_next)
 
         buttonTrue.setOnClickListener {
