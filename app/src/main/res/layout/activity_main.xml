@@ -52,6 +52,7 @@
             android:id="@+id/button_prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/button_prev"
             android:src="@drawable/chevron_left"
             />
 
@@ -59,6 +60,7 @@
             android:id="@+id/button_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/button_next"
             android:src="@drawable/chevron_right"
             />
 
