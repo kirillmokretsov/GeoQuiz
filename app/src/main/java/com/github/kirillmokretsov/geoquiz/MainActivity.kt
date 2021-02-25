@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         Question(R.string.question_australia, true),
         Question(R.string.question_russia, true),
         Question(R.string.question_europe, true),
-        Question(R.string.question_america, true),
+        Question(R.string.question_america, false),
         Question(R.string.question_asia, true),
         Question(R.string.question_barbados, true),
         Question(R.string.question_lake, true),
