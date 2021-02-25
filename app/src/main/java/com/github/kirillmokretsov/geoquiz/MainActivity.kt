@@ -10,6 +10,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonTrue: Button
     private lateinit var buttonFalse: Button
 
+    private val questionBank = listOf(
+        Question(R.string.question_australia, true),
+        Question(R.string.question_russia, true),
+        Question(R.string.question_europe, true),
+        Question(R.string.question_america, true),
+        Question(R.string.question_asia, true),
+        Question(R.string.question_barbados, true),
+        Question(R.string.question_lake, true),
+        Question(R.string.question_question, true)
+    )
+    private var index = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
