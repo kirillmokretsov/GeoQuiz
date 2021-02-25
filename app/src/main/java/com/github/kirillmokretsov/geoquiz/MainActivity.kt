@@ -1,11 +1,9 @@
 package com.github.kirillmokretsov.geoquiz
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
 import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,22 +18,10 @@ class MainActivity : AppCompatActivity() {
         buttonFalse = findViewById(R.id.button_false)
 
         buttonTrue.setOnClickListener {
-            val toast: Toast = Toast.makeText(
-                this,
-                R.string.answer_true,
-                Toast.LENGTH_SHORT
-            )
-            toast.setGravity(Gravity.TOP, 0, 0)
-            toast.show()
+            Snackbar.make(it, R.string.answer_true, Snackbar.LENGTH_SHORT).show()
         }
         buttonFalse.setOnClickListener {
-            val toast: Toast = Toast.makeText(
-                this,
-                R.string.answer_false,
-                Toast.LENGTH_SHORT
-            )
-            toast.setGravity(Gravity.TOP, 0, 0)
-            toast.show()
+            Snackbar.make(it, R.string.answer_false, Snackbar.LENGTH_SHORT).show()
         }
     }
 }
