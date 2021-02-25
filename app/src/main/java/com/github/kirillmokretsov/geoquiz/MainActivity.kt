@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             index = (index + 1) % questionBank.size
             updateQuestion()
         }
+        updateQuestion()
     }
 
     private fun updateQuestion() {
