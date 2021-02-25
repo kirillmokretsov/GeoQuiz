@@ -1,4 +1,4 @@
-package com.github.kirillmokretsov.geoquiz
+package io.github.kirillmokretsov.geoquiz
 
 import androidx.annotation.StringRes
 

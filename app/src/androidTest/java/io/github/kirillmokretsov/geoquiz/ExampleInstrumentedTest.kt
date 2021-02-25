@@ -1,4 +1,4 @@
-package com.github.kirillmokretsov.geoquiz
+package io.github.kirillmokretsov.geoquiz
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

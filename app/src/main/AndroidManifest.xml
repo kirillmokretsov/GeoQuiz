@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoQuiz"
         >
-        <activity android:name=".MainActivity">
+        <activity android:name="io.github.kirillmokretsov.geoquiz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
