@@ -40,7 +40,13 @@ class MainActivity : AppCompatActivity() {
         buttonFalse.setOnClickListener {
             Snackbar.make(it, R.string.answer_false, Snackbar.LENGTH_SHORT).show()
         }
+        buttonNext.setOnClickListener {
+            index = (index + 1) % questionBank.size
+            updateQuestion()
+        }
+    }
 
+    private fun updateQuestion() {
         val questionTextResId = questionBank[index].textResId
         textViewQuestion.setText(questionTextResId)
     }
