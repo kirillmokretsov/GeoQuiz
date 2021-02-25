@@ -2,6 +2,7 @@ package com.github.kirillmokretsov.geoquiz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
@@ -15,5 +16,12 @@ class MainActivity : AppCompatActivity() {
 
         buttonTrue = findViewById(R.id.button_true)
         buttonFalse = findViewById(R.id.button_false)
+
+        buttonTrue.setOnClickListener { view: View ->
+
+        }
+        buttonFalse.setOnClickListener { view: View ->
+
+        }
     }
 }
