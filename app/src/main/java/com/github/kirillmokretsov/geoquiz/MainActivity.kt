@@ -2,13 +2,16 @@ package com.github.kirillmokretsov.geoquiz
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var textViewQuestion: TextView
     private lateinit var buttonTrue: Button
     private lateinit var buttonFalse: Button
+    private lateinit var buttonNext: Button
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -26,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        textViewQuestion = findViewById(R.id.text_view_question)
         buttonTrue = findViewById(R.id.button_true)
         buttonFalse = findViewById(R.id.button_false)
+        buttonNext = findViewById(R.id.button_next)
 
         buttonTrue.setOnClickListener {
             Snackbar.make(it, R.string.answer_true, Snackbar.LENGTH_SHORT).show()
