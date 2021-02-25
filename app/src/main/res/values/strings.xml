@@ -3,4 +3,6 @@
     <string name="question_text">Camberra is the capital of Australia.</string>
     <string name="button_true">True</string>
     <string name="button_false">False</string>
+    <string name="answer_true">Correct!</string>
+    <string name="answer_false">Incorrect!</string>
 </resources>
