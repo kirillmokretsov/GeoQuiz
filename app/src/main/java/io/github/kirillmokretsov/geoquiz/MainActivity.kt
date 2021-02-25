@@ -3,6 +3,7 @@ package io.github.kirillmokretsov.geoquiz
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.github.kirillmokretsov.geoquiz.R
@@ -13,8 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textViewQuestion: TextView
     private lateinit var buttonTrue: Button
     private lateinit var buttonFalse: Button
-    private  lateinit var buttonPrev: Button
-    private lateinit var buttonNext: Button
+    private lateinit var buttonPrev: ImageButton
+    private lateinit var buttonNext: ImageButton
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),

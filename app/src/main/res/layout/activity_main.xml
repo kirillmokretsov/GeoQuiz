@@ -48,22 +48,18 @@
         android:orientation="horizontal"
         >
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/chevron_left"
-            android:drawablePadding="4dp"
-            android:text="@string/button_prev"
+            android:src="@drawable/chevron_left"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/chevron_right"
-            android:drawablePadding="4dp"
-            android:text="@string/button_next"
+            android:src="@drawable/chevron_right"
             />
 
 
