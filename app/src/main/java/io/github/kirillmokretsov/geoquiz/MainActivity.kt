@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
         buttonPrev.setOnClickListener {
             index = (index - 1) % questionBank.size
+            if (index < 0) index = 7
             updateQuestion()
         }
         buttonNext.setOnClickListener {
