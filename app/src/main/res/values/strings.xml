@@ -5,6 +5,7 @@
     <string name="answer_true">Correct!</string>
     <string name="answer_false">Incorrect!</string>
     <string name="button_next">Next</string>
+    <string name="button_prev">Prev</string>
 
 <!--    Questions -->
     <string name="question_australia">Canberra is the capital of Australia.</string>
@@ -15,5 +16,4 @@
     <string name="question_barbados">Elizabeth II is the queen of Barbados.</string>
     <string name="question_lake">Lake Sho is pretending to be Europe\'s geographical centre.</string>
     <string name="question_question">This app includes 8 questions including this.</string>
-    <string name="button_prev">Prev</string>
 </resources>
