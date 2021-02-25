@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         buttonTrue = findViewById(R.id.button_true)
         buttonFalse = findViewById(R.id.button_false)
 
-        buttonTrue.setOnClickListener { view: View ->
+        buttonTrue.setOnClickListener {
             val toast: Toast = Toast.makeText(
                 this,
                 R.string.answer_true,
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             toast.setGravity(Gravity.TOP, 0, 0)
             toast.show()
         }
-        buttonFalse.setOnClickListener { view: View ->
+        buttonFalse.setOnClickListener {
             val toast: Toast = Toast.makeText(
                 this,
                 R.string.answer_false,
