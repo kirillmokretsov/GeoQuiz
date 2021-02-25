@@ -5,4 +5,5 @@
     <string name="button_false">False</string>
     <string name="answer_true">Correct!</string>
     <string name="answer_false">Incorrect!</string>
+    <string name="button_next">Next</string>
 </resources>
