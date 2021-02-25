@@ -1,6 +1,7 @@
 package com.github.kirillmokretsov.geoquiz
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -35,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         buttonNext = findViewById(R.id.button_next)
 
         buttonTrue.setOnClickListener {
-            Snackbar.make(it, R.string.answer_true, Snackbar.LENGTH_SHORT).show()
+            checkAnswer(true, it)
         }
         buttonFalse.setOnClickListener {
-            Snackbar.make(it, R.string.answer_false, Snackbar.LENGTH_SHORT).show()
+            checkAnswer(false, it)
         }
         buttonNext.setOnClickListener {
             index = (index + 1) % questionBank.size
@@ -50,5 +51,18 @@ class MainActivity : AppCompatActivity() {
     private fun updateQuestion() {
         val questionTextResId = questionBank[index].textResId
         textViewQuestion.setText(questionTextResId)
+    }
+
+    private fun checkAnswer(userAnswer: Boolean, view: View) {
+        val correctAnswer = questionBank[index].answer
+
+        val messageResId = if (userAnswer == correctAnswer) {
+            R.string.answer_true
+        } else {
+            R.string.answer_false
+        }
+
+        Snackbar.make(view, messageResId, Snackbar.LENGTH_SHORT).show()
+
     }
 }
