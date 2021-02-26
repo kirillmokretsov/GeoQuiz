@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
 
+private const val KEY_INDEX = "index"
+
 class MainActivity : AppCompatActivity() {
 
     private val quizViewModel: QuizViewModel by lazy {
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        quizViewModel.currentQuestionIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
 
         textViewQuestion = findViewById(R.id.text_view_question)
         buttonTrue = findViewById(R.id.button_true)
@@ -57,8 +61,12 @@ class MainActivity : AppCompatActivity() {
         updateQuestion()
     }
 
-    private fun updateQuestion() = textViewQuestion.setText(quizViewModel.currentQuestionText)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_INDEX, quizViewModel.currentQuestionIndex)
+    }
 
+    private fun updateQuestion() = textViewQuestion.setText(quizViewModel.currentQuestionText)
 
     private fun checkAnswer(userAnswer: Boolean, view: View) {
         if (!quizViewModel.currentQuestionIsAnswered) {

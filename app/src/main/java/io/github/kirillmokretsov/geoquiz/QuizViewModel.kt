@@ -20,6 +20,12 @@ class QuizViewModel : ViewModel() {
     val questionBankSize: Int
         get() = questionBank.size
 
+    var currentQuestionIndex: Int
+        get() = index
+        set(value) {
+            index = value
+        }
+
     val currentQuestionAnswer: Boolean
         get() = questionBank[index].answer
 
