@@ -7,31 +7,31 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
-import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
 
-    private val tag = "my_logs"
+    companion object {
+        const val tag = "my_logs"
+    }
+
+    private val quizViewModel: QuizViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(QuizViewModel::class.java)
+    }
+
+    private var completed = 0
+    private var correctly = 0
 
     private lateinit var textViewQuestion: TextView
     private lateinit var buttonTrue: Button
     private lateinit var buttonFalse: Button
     private lateinit var buttonPrev: ImageButton
     private lateinit var buttonNext: ImageButton
-
-    private val questionBank = listOf(
-        Question(R.string.question_australia, true),
-        Question(R.string.question_russia, true),
-        Question(R.string.question_europe, true),
-        Question(R.string.question_america, false),
-        Question(R.string.question_asia, true),
-        Question(R.string.question_barbados, true),
-        Question(R.string.question_lake, true),
-        Question(R.string.question_question, true)
-    )
-    private var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(tag, "onCreate()")
@@ -51,18 +51,12 @@ class MainActivity : AppCompatActivity() {
             checkAnswer(false, it)
         }
         buttonPrev.setOnClickListener {
-            index = (index - 1) % questionBank.size
-            if (index < 0) index = 7
+            quizViewModel.moveBack()
             updateQuestion()
             isCompletedTest(it)
         }
         buttonNext.setOnClickListener {
-            index = (index + 1) % questionBank.size
-            updateQuestion()
-            isCompletedTest(it)
-        }
-        textViewQuestion.setOnClickListener {
-            index = (index + 1) % questionBank.size
+            quizViewModel.moveForward()
             updateQuestion()
             isCompletedTest(it)
         }
@@ -100,19 +94,19 @@ class MainActivity : AppCompatActivity() {
         Log.d(tag, "onRestart()")
     }
 
-    private fun updateQuestion() {
-        val questionTextResId = questionBank[index].textResId
-        textViewQuestion.setText(questionTextResId)
-    }
+    private fun updateQuestion() = textViewQuestion.setText(quizViewModel.currentQuestionText)
+
 
     private fun checkAnswer(userAnswer: Boolean, view: View) {
-        if (!questionBank[index].isAnswered) {
-            questionBank[index].isAnswered = true
+        if (!quizViewModel.currentQuestionIsAnswered) {
+            quizViewModel.currentQuestionIsAnswered = true
+            completed++
 
-            val correctAnswer = questionBank[index].answer
+            val correctAnswer = quizViewModel.currentQuestionAnswer
 
-            questionBank[index].isAnswerTrue = userAnswer == correctAnswer
-            val messageResId = if (questionBank[index].isAnswerTrue) {
+            quizViewModel.currentQuestionIsAnswerTrue = userAnswer == correctAnswer
+            val messageResId = if (quizViewModel.currentQuestionIsAnswerTrue) {
+                correctly++
                 R.string.answer_true
             } else {
                 R.string.answer_false
@@ -125,16 +119,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isCompletedTest(view: View) {
-        var completed: Int = 0;
-        var correctly: Int = 0;
-        for (question in questionBank) {
-            if (question.isAnswered) {
-                completed++
-                if (question.isAnswerTrue)
-                    correctly++
-            }
-        }
-        if (completed == questionBank.size) {
+        if (completed == quizViewModel.questionBankSize) {
             var message = getString(R.string.result)
             message = message + " " + (correctly.toDouble() / completed.toDouble()) * 100 + '%'
             Snackbar.make(this, view, message, Snackbar.LENGTH_SHORT).show()

@@ -1,0 +1,50 @@
+package io.github.kirillmokretsov.geoquiz
+
+import androidx.lifecycle.ViewModel
+import com.github.kirillmokretsov.geoquiz.R
+
+class QuizViewModel : ViewModel() {
+
+    private val questionBank = listOf(
+        Question(R.string.question_australia, true),
+        Question(R.string.question_russia, true),
+        Question(R.string.question_europe, true),
+        Question(R.string.question_america, false),
+        Question(R.string.question_asia, true),
+        Question(R.string.question_barbados, true),
+        Question(R.string.question_lake, true),
+        Question(R.string.question_question, true)
+    )
+    var index = 0
+
+    val questionBankSize: Int
+        get() = questionBank.size
+
+    val currentQuestionAnswer: Boolean
+        get() = questionBank[index].answer
+
+    val currentQuestionText: Int
+        get() = questionBank[index].textResId
+
+    var currentQuestionIsAnswered: Boolean
+        get() = questionBank[index].isAnswered
+        set(value: Boolean) {
+            questionBank[index].isAnswered = value
+        }
+
+    var currentQuestionIsAnswerTrue: Boolean
+        get() = questionBank[index].isAnswerTrue
+        set(value: Boolean) {
+            questionBank[index].isAnswerTrue = value
+        }
+
+    fun moveForward() {
+        index = (index + 1) % questionBank.size
+    }
+
+    fun moveBack() {
+        index = (index - 1) % questionBank.size
+        if (index < 0) index = questionBank.size - 1
+    }
+
+}
