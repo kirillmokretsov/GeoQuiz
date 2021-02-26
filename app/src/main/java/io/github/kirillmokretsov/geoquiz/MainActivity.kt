@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonNext: ImageButton
 
     private val questionBank = listOf(
-        Question(R.string.question_australia, true),
-        Question(R.string.question_russia, true),
-        Question(R.string.question_europe, true),
-        Question(R.string.question_america, false),
-        Question(R.string.question_asia, true),
-        Question(R.string.question_barbados, true),
-        Question(R.string.question_lake, true),
-        Question(R.string.question_question, true)
+        Question(R.string.question_australia, true, false),
+        Question(R.string.question_russia, true, false),
+        Question(R.string.question_europe, true, false),
+        Question(R.string.question_america, false, false),
+        Question(R.string.question_asia, true, false),
+        Question(R.string.question_barbados, true, false),
+        Question(R.string.question_lake, true, false),
+        Question(R.string.question_question, true, false)
     )
     private var index = 0
 
@@ -101,15 +101,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(userAnswer: Boolean, view: View) {
-        val correctAnswer = questionBank[index].answer
 
-        val messageResId = if (userAnswer == correctAnswer) {
-            R.string.answer_true
+        if (!questionBank[index].isAnswered) {
+            questionBank[index].isAnswered = true
+
+            val correctAnswer = questionBank[index].answer
+
+            val messageResId = if (userAnswer == correctAnswer) {
+                R.string.answer_true
+            } else {
+                R.string.answer_false
+            }
+
+            Snackbar.make(view, messageResId, Snackbar.LENGTH_SHORT).show()
         } else {
-            R.string.answer_false
-        }
 
-        Snackbar.make(view, messageResId, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, R.string.answer_repeat, Snackbar.LENGTH_SHORT).show()
+
+        }
 
     }
 }

@@ -2,10 +2,11 @@
     <string name="app_name">GeoQuiz</string>
     <string name="button_true">True</string>
     <string name="button_false">False</string>
-    <string name="answer_true">Correct!</string>
-    <string name="answer_false">Incorrect!</string>
     <string name="button_next">Next</string>
     <string name="button_prev">Prev</string>
+    <string name="answer_true">Correct!</string>
+    <string name="answer_false">Incorrect!</string>
+    <string name="answer_repeat">You have answered this question already</string>
 
 <!--    Questions -->
     <string name="question_australia">Canberra is the capital of Australia.</string>
