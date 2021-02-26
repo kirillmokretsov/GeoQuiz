@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="io.github.kirillmokretsov.geoquiz.MainActivity"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:padding="24dp"
+        tools:text="@string/question_australia"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_true"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_false"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:orientation="horizontal"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_prev"
+            android:src="@drawable/chevron_left"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_next"
+            android:src="@drawable/chevron_right"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>
