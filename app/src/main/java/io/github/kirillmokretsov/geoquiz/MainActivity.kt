@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
+import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,14 +22,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonNext: ImageButton
 
     private val questionBank = listOf(
-        Question(R.string.question_australia, true, false),
-        Question(R.string.question_russia, true, false),
-        Question(R.string.question_europe, true, false),
-        Question(R.string.question_america, false, false),
-        Question(R.string.question_asia, true, false),
-        Question(R.string.question_barbados, true, false),
-        Question(R.string.question_lake, true, false),
-        Question(R.string.question_question, true, false)
+        Question(R.string.question_australia, true),
+        Question(R.string.question_russia, true),
+        Question(R.string.question_europe, true),
+        Question(R.string.question_america, false),
+        Question(R.string.question_asia, true),
+        Question(R.string.question_barbados, true),
+        Question(R.string.question_lake, true),
+        Question(R.string.question_question, true)
     )
     private var index = 0
 
@@ -53,16 +54,20 @@ class MainActivity : AppCompatActivity() {
             index = (index - 1) % questionBank.size
             if (index < 0) index = 7
             updateQuestion()
+            isCompletedTest(it)
         }
         buttonNext.setOnClickListener {
             index = (index + 1) % questionBank.size
             updateQuestion()
+            isCompletedTest(it)
         }
         textViewQuestion.setOnClickListener {
             index = (index + 1) % questionBank.size
             updateQuestion()
+            isCompletedTest(it)
         }
         updateQuestion()
+        isCompletedTest(buttonFalse)
     }
 
     override fun onStart() {
@@ -101,13 +106,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(userAnswer: Boolean, view: View) {
-
         if (!questionBank[index].isAnswered) {
             questionBank[index].isAnswered = true
 
             val correctAnswer = questionBank[index].answer
 
-            val messageResId = if (userAnswer == correctAnswer) {
+            questionBank[index].isAnswerTrue = userAnswer == correctAnswer
+            val messageResId = if (questionBank[index].isAnswerTrue) {
                 R.string.answer_true
             } else {
                 R.string.answer_false
@@ -115,10 +120,24 @@ class MainActivity : AppCompatActivity() {
 
             Snackbar.make(view, messageResId, Snackbar.LENGTH_SHORT).show()
         } else {
-
             Snackbar.make(view, R.string.answer_repeat, Snackbar.LENGTH_SHORT).show()
-
         }
+    }
 
+    private fun isCompletedTest(view: View) {
+        var completed: Int = 0;
+        var correctly: Int = 0;
+        for (question in questionBank) {
+            if (question.isAnswered) {
+                completed++
+                if (question.isAnswerTrue)
+                    correctly++
+            }
+        }
+        if (completed == questionBank.size) {
+            var message = getString(R.string.result)
+            message = message + " " + (correctly.toDouble() / completed.toDouble()) * 100 + '%'
+            Snackbar.make(this, view, message, Snackbar.LENGTH_SHORT).show()
+        }
     }
 }

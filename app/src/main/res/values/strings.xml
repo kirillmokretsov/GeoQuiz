@@ -7,6 +7,7 @@
     <string name="answer_true">Correct!</string>
     <string name="answer_false">Incorrect!</string>
     <string name="answer_repeat">You have answered this question already</string>
+    <string name="result">Congratulations! You correctly answered </string>
 
 <!--    Questions -->
     <string name="question_australia">Canberra is the capital of Australia.</string>
