@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoQuiz"
+        android:fullBackupContent="@xml/backup_descriptor"
         >
         <activity android:name="io.github.kirillmokretsov.geoquiz.MainActivity">
             <intent-filter>

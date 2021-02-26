@@ -15,7 +15,7 @@ class QuizViewModel : ViewModel() {
         Question(R.string.question_lake, true),
         Question(R.string.question_question, true)
     )
-    var index = 0
+    private var index = 0
 
     val questionBankSize: Int
         get() = questionBank.size
@@ -28,14 +28,8 @@ class QuizViewModel : ViewModel() {
 
     var currentQuestionIsAnswered: Boolean
         get() = questionBank[index].isAnswered
-        set(value: Boolean) {
+        set(value) {
             questionBank[index].isAnswered = value
-        }
-
-    var currentQuestionIsAnswerTrue: Boolean
-        get() = questionBank[index].isAnswerTrue
-        set(value: Boolean) {
-            questionBank[index].isAnswerTrue = value
         }
 
     fun moveForward() {

@@ -1,7 +1,6 @@
 package io.github.kirillmokretsov.geoquiz
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -12,10 +11,6 @@ import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        const val tag = "my_logs"
-    }
 
     private val quizViewModel: QuizViewModel by lazy {
         ViewModelProvider(
@@ -34,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonNext: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(tag, "onCreate()")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -61,37 +55,6 @@ class MainActivity : AppCompatActivity() {
             isCompletedTest(it)
         }
         updateQuestion()
-        isCompletedTest(buttonFalse)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(tag, "onStart()")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(tag, "onResume()")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(tag, "onPause()")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(tag, "onStop()")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(tag, "onDestroy()")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(tag, "onRestart()")
     }
 
     private fun updateQuestion() = textViewQuestion.setText(quizViewModel.currentQuestionText)
@@ -102,10 +65,7 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.currentQuestionIsAnswered = true
             completed++
 
-            val correctAnswer = quizViewModel.currentQuestionAnswer
-
-            quizViewModel.currentQuestionIsAnswerTrue = userAnswer == correctAnswer
-            val messageResId = if (quizViewModel.currentQuestionIsAnswerTrue) {
+            val messageResId = if (userAnswer == quizViewModel.currentQuestionAnswer) {
                 correctly++
                 R.string.answer_true
             } else {
