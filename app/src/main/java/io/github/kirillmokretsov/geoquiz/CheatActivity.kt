@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.github.kirillmokretsov.geoquiz.R
 
+private const val KEY_IS_RESULT_SHOWN = "is_result_shown"
 private const val EXTRA_ANSWER_IS_TRUE = "io.github.kirillmokretsov.geoquiz.answer_is_true"
 const val EXTRA_ANSWER_SHOWN = "io.github.kirillmokretsov.geoquiz.answer_shown"
 
@@ -38,6 +39,7 @@ class CheatActivity : AppCompatActivity() {
 
         cheatViewModel.answerIsTrue =
             intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, cheatViewModel.answerIsTrue)
+        cheatViewModel.isResultShown = savedInstanceState?.getBoolean(KEY_IS_RESULT_SHOWN, false) ?: false
 
         textViewAnswer = findViewById(R.id.text_view_answer)
         buttonShowAnswer = findViewById(R.id.button_show_answer)
@@ -52,6 +54,11 @@ class CheatActivity : AppCompatActivity() {
             setAnswerShownResult(true)
             updateAnswer()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(KEY_IS_RESULT_SHOWN, cheatViewModel.isResultShown)
     }
 
     private fun updateAnswer() = textViewAnswer.setText(
