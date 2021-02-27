@@ -8,6 +8,10 @@
     <string name="answer_false">Incorrect!</string>
     <string name="answer_repeat">You have answered this question already</string>
     <string name="result">Congratulations! You correctly answered </string>
+    <string name="cheat_warning">Are you sure you want to do this?</string>
+    <string name="answer_show">Show answer</string>
+    <string name="button_cheat">Cheat!</string>
+    <string name="answer_cheat">Cheating is wrong</string>
 
 <!--    Questions -->
     <string name="question_australia">Canberra is the capital of Australia.</string>
