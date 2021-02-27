@@ -1,6 +1,5 @@
 package io.github.kirillmokretsov.geoquiz
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -12,6 +11,7 @@ import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
 
 private const val KEY_INDEX = "index"
+private const val REQUEST_CODE_CHEAT = 0
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,7 +62,12 @@ class MainActivity : AppCompatActivity() {
             isCompletedTest(it)
         }
         buttonCheat.setOnClickListener {
-            startActivity(CheatActivity.newIntent(this@MainActivity, quizViewModel.currentQuestionAnswer))
+            startActivityForResult(
+                CheatActivity.newIntent(
+                    this@MainActivity,
+                    quizViewModel.currentQuestionAnswer
+                ), REQUEST_CODE_CHEAT
+            )
         }
 
         updateQuestion()
