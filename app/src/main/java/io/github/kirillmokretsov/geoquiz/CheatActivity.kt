@@ -36,25 +36,30 @@ class CheatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cheat)
 
-        cheatViewModel.answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, cheatViewModel.answerIsTrue)
+        cheatViewModel.answerIsTrue =
+            intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, cheatViewModel.answerIsTrue)
 
         textViewAnswer = findViewById(R.id.text_view_answer)
         buttonShowAnswer = findViewById(R.id.button_show_answer)
 
         buttonShowAnswer.setOnClickListener {
-            val answerText = when {
-                cheatViewModel.answerIsTrue -> R.string.button_true
-                else -> R.string.button_false
-            }
-            textViewAnswer.setText(answerText)
             cheatViewModel.isResultShown = true
+            updateAnswer()
             setAnswerShownResult(true)
         }
 
         if (cheatViewModel.isResultShown) {
             setAnswerShownResult(true)
+            updateAnswer()
         }
     }
+
+    private fun updateAnswer() = textViewAnswer.setText(
+        when {
+            cheatViewModel.answerIsTrue -> R.string.button_true
+            else -> R.string.button_false
+        }
+    )
 
     private fun setAnswerShownResult(isAnswerShown: Boolean) {
         setResult(Activity.RESULT_OK,
