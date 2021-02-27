@@ -13,7 +13,7 @@
     <string name="button_cheat">Cheat!</string>
     <string name="answer_cheat">Cheating is wrong</string>
 
-<!--    Questions -->
+    <!--    Questions -->
     <string name="question_australia">Canberra is the capital of Australia.</string>
     <string name="question_russia">Moscow is the capital of Russian Federation.</string>
     <string name="question_europe">London is the capital of Great Britain.</string>

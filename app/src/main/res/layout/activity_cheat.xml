@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="io.github.kirillmokretsov.geoquiz.CheatActivity"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:text="@string/cheat_warning"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        tools:text="Answer"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_show_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/answer_show"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
