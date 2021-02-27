@@ -21,21 +21,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_true"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_true"
-            />
+            android:orientation="horizontal"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_true"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_false"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_false"
+            android:id="@+id/button_cheat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_false"
+            android:layout_gravity="center"
+            android:text="@string/button_cheat"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
