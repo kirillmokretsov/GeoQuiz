@@ -99,11 +99,13 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.currentQuestionIsAnswered = true
             completed++
 
-            val messageResId = if (userAnswer == quizViewModel.currentQuestionAnswer) {
-                correctly++
-                R.string.answer_true
-            } else {
-                R.string.answer_false
+            val messageResId = when {
+                quizViewModel.currentIsCheater -> R.string.answer_cheat
+                userAnswer == quizViewModel.currentQuestionAnswer -> {
+                    correctly++
+                    R.string.answer_true
+                }
+                else -> R.string.answer_false
             }
 
             Snackbar.make(view, messageResId, Snackbar.LENGTH_SHORT).show()
