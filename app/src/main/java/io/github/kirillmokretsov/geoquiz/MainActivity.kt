@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonFalse: Button
     private lateinit var buttonPrev: ImageButton
     private lateinit var buttonNext: ImageButton
+    private lateinit var buttonCheat: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         buttonFalse = findViewById(R.id.button_false)
         buttonPrev = findViewById(R.id.button_prev)
         buttonNext = findViewById(R.id.button_next)
+        buttonCheat = findViewById(R.id.button_cheat)
 
         buttonTrue.setOnClickListener {
             checkAnswer(true, it)
