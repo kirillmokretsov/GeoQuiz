@@ -22,7 +22,6 @@ class CheatActivity : AppCompatActivity() {
         ).get(CheatViewModel::class.java)
     }
 
-    private var answerIsTrue = false
     private lateinit var textViewAnswer: TextView
     private lateinit var buttonShowAnswer: Button
 
@@ -37,17 +36,22 @@ class CheatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cheat)
 
-        answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue)
+        cheatViewModel.answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, cheatViewModel.answerIsTrue)
 
         textViewAnswer = findViewById(R.id.text_view_answer)
         buttonShowAnswer = findViewById(R.id.button_show_answer)
 
         buttonShowAnswer.setOnClickListener {
             val answerText = when {
-                answerIsTrue -> R.string.button_true
+                cheatViewModel.answerIsTrue -> R.string.button_true
                 else -> R.string.button_false
             }
             textViewAnswer.setText(answerText)
+            cheatViewModel.isResultShown = true
+            setAnswerShownResult(true)
+        }
+
+        if (cheatViewModel.isResultShown) {
             setAnswerShownResult(true)
         }
     }
