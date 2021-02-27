@@ -60,6 +60,10 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
             isCompletedTest(it)
         }
+        buttonCheat.setOnClickListener {
+            // Start CheatActivity
+        }
+
         updateQuestion()
     }
 
