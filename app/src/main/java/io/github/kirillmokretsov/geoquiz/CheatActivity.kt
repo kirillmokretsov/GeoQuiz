@@ -7,12 +7,20 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.github.kirillmokretsov.geoquiz.R
 
 private const val EXTRA_ANSWER_IS_TRUE = "io.github.kirillmokretsov.geoquiz.answer_is_true"
 const val EXTRA_ANSWER_SHOWN = "io.github.kirillmokretsov.geoquiz.answer_shown"
 
 class CheatActivity : AppCompatActivity() {
+
+    private val cheatViewModel: CheatViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(CheatViewModel::class.java)
+    }
 
     private var answerIsTrue = false
     private lateinit var textViewAnswer: TextView
