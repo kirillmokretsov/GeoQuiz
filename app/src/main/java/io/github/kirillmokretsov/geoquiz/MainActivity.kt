@@ -3,6 +3,7 @@ package io.github.kirillmokretsov.geoquiz
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -13,6 +14,7 @@ import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
 
 private const val KEY_INDEX = "index"
+private const val KEY_IS_CHEATER = "is_cheater"
 private const val REQUEST_CODE_CHEAT = 0
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         quizViewModel.currentQuestionIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        quizViewModel.currentIsCheater =
+            savedInstanceState?.getBoolean(KEY_IS_CHEATER, false) ?: false
 
         textViewQuestion = findViewById(R.id.text_view_question)
         buttonTrue = findViewById(R.id.button_true)
@@ -78,6 +82,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_INDEX, quizViewModel.currentQuestionIndex)
+        outState.putBoolean(KEY_IS_CHEATER, quizViewModel.currentIsCheater)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
