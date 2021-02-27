@@ -1,5 +1,7 @@
 package io.github.kirillmokretsov.geoquiz
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -76,6 +78,18 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_INDEX, quizViewModel.currentQuestionIndex)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode != Activity.RESULT_OK) return
+
+        if (requestCode == REQUEST_CODE_CHEAT)
+            quizViewModel.currentIsCheater =
+                data?.getBooleanExtra(
+                    EXTRA_ANSWER_SHOWN, false
+                ) ?: false
     }
 
     private fun updateQuestion() = textViewQuestion.setText(quizViewModel.currentQuestionText)

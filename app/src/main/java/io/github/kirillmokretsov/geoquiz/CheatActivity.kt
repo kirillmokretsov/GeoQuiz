@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.kirillmokretsov.geoquiz.R
 
 private const val EXTRA_ANSWER_IS_TRUE = "io.github.kirillmokretsov.geoquiz.answer_is_true"
-private const val EXTRA_ANSWER_SHOWN = "io.github.kirillmokretsov.geoquiz.answer_shown"
+const val EXTRA_ANSWER_SHOWN = "io.github.kirillmokretsov.geoquiz.answer_shown"
 
 class CheatActivity : AppCompatActivity() {
 
