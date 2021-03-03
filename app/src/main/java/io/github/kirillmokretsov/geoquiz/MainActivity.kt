@@ -16,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 private const val KEY_INDEX = "index"
 private const val KEY_IS_ANSWERED = "is_answered"
 private const val KEY_IS_CHEATER = "is_cheater"
+private const val KEY_COMPLETED = "completed"
+private const val KEY_CORRECTLY = "correctly"
 private const val REQUEST_CODE_CHEAT = 0
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         quizViewModel.currentQuestionIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        quizViewModel.completed = savedInstanceState?.getInt(KEY_COMPLETED, 0) ?: 0
+        quizViewModel.correctly = savedInstanceState?.getInt(KEY_CORRECTLY, 0) ?: 0
         val isAnsweredArray = savedInstanceState?.getBooleanArray(KEY_IS_ANSWERED)
         val isCheatedArray = savedInstanceState?.getBooleanArray(KEY_IS_CHEATER)
         for (a in quizViewModel.questionBank.indices) {
@@ -93,6 +97,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         outState.putInt(KEY_INDEX, quizViewModel.currentQuestionIndex)
+        outState.putInt(KEY_COMPLETED, quizViewModel.completed)
+        outState.putInt(KEY_CORRECTLY, quizViewModel.correctly)
         outState.putBooleanArray(KEY_IS_ANSWERED, arrayIsAnswered)
         outState.putBooleanArray(KEY_IS_CHEATER, arrayIsCheater)
     }
