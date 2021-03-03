@@ -25,7 +25,6 @@ class CheatActivity : AppCompatActivity() {
     }
 
     private lateinit var textViewAnswer: TextView
-    private lateinit var textViewAPI: TextView
     private lateinit var buttonShowAnswer: Button
 
     companion object {
@@ -46,7 +45,7 @@ class CheatActivity : AppCompatActivity() {
         textViewAnswer = findViewById(R.id.text_view_answer)
         buttonShowAnswer = findViewById(R.id.button_show_answer)
 
-        findViewById<TextView>(R.id.text_view_api).setText("API Level " + Build.VERSION.SDK_INT)
+        findViewById<TextView>(R.id.text_view_api).text = String.format(resources.getString(R.string.api_level), Build.VERSION.SDK_INT)
 
         buttonShowAnswer.setOnClickListener {
             cheatViewModel.isResultShown = true

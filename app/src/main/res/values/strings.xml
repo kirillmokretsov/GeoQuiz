@@ -12,6 +12,7 @@
     <string name="answer_show">Show answer</string>
     <string name="button_cheat">Cheat!</string>
     <string name="answer_cheat">Cheating is wrong</string>
+    <string name="api_level">API Level %1$d</string>
 
     <!--    Questions -->
     <string name="question_australia">Canberra is the capital of Australia.</string>
