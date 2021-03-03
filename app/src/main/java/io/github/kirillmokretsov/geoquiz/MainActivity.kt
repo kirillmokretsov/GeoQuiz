@@ -14,6 +14,7 @@ import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
 
 private const val KEY_INDEX = "index"
+private const val KEY_IS_ANSWERED = "is_answered"
 private const val KEY_IS_CHEATER = "is_cheater"
 private const val REQUEST_CODE_CHEAT = 0
 
@@ -41,6 +42,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         quizViewModel.currentQuestionIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        val isAnsweredArray = savedInstanceState?.getBooleanArray(KEY_IS_ANSWERED)
+        val isCheatedArray = savedInstanceState?.getBooleanArray(KEY_IS_CHEATER)
+        for (a in quizViewModel.questionBank.indices) {
+            quizViewModel.questionBank[a].isAnswered = isAnsweredArray?.get(a) ?: false
+            quizViewModel.questionBank[a].isCheated = isCheatedArray?.get(a) ?: false
+        }
 
         textViewQuestion = findViewById(R.id.text_view_question)
         buttonTrue = findViewById(R.id.button_true)
@@ -79,7 +86,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+
+        val arrayIsAnswered = BooleanArray(quizViewModel.questionBankSize)
+        val arrayIsCheater = BooleanArray(quizViewModel.questionBankSize)
+
+        for (a in quizViewModel.questionBank.indices) {
+            arrayIsAnswered[a] = quizViewModel.questionBank[a].isAnswered
+            arrayIsCheater[a] = quizViewModel.questionBank[a].isCheated
+        }
+
         outState.putInt(KEY_INDEX, quizViewModel.currentQuestionIndex)
+        outState.putBooleanArray(KEY_IS_ANSWERED, arrayIsAnswered)
+        outState.putBooleanArray(KEY_IS_CHEATER, arrayIsCheater)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

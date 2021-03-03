@@ -5,7 +5,7 @@ import com.github.kirillmokretsov.geoquiz.R
 
 class QuizViewModel : ViewModel() {
 
-    private val questionBank = listOf(
+    val questionBank = listOf(
         Question(R.string.question_australia, true),
         Question(R.string.question_russia, true),
         Question(R.string.question_europe, true),
@@ -26,12 +26,6 @@ class QuizViewModel : ViewModel() {
             index = value
         }
 
-    var currentIsCheater: Boolean
-        get() = questionBank[index].isCheated
-        set(value) {
-            questionBank[index].isCheated = value
-        }
-
     val currentQuestionAnswer: Boolean
         get() = questionBank[index].answer
 
@@ -42,6 +36,12 @@ class QuizViewModel : ViewModel() {
         get() = questionBank[index].isAnswered
         set(value) {
             questionBank[index].isAnswered = value
+        }
+
+    var currentIsCheater: Boolean
+        get() = questionBank[index].isCheated
+        set(value) {
+            questionBank[index].isCheated = value
         }
 
     fun moveForward() {
