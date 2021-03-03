@@ -3,12 +3,12 @@ package io.github.kirillmokretsov.geoquiz
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.github.kirillmokretsov.geoquiz.R
 import com.google.android.material.snackbar.Snackbar
@@ -78,7 +78,9 @@ class MainActivity : AppCompatActivity() {
                 CheatActivity.newIntent(
                     this@MainActivity,
                     quizViewModel.currentQuestionAnswer
-                ), REQUEST_CODE_CHEAT
+                ), REQUEST_CODE_CHEAT,
+                ActivityOptionsCompat.makeClipRevealAnimation(it, it.scrollX, it.scrollY, it.width, it.height)
+                    .toBundle()
             )
         }
 
@@ -140,7 +142,8 @@ class MainActivity : AppCompatActivity() {
     private fun isCompletedTest(view: View) {
         if (quizViewModel.completed == quizViewModel.questionBankSize) {
             var message = getString(R.string.result)
-            message = message + " " + (quizViewModel.correctly.toDouble() / quizViewModel.completed.toDouble()) * 100 + '%'
+            message =
+                message + " " + (quizViewModel.correctly.toDouble() / quizViewModel.completed.toDouble()) * 100 + '%'
             Snackbar.make(this, view, message, Snackbar.LENGTH_SHORT).show()
         }
     }
