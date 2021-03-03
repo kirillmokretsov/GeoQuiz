@@ -16,6 +16,8 @@ class QuizViewModel : ViewModel() {
         Question(R.string.question_question, true)
     )
     private var index = 0
+    var completed = 0
+    var correctly = 0
 
     val questionBankSize: Int
         get() = questionBank.size

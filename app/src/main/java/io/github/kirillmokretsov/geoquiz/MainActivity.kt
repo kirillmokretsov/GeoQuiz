@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
         ).get(QuizViewModel::class.java)
     }
 
-    private var completed = 0
-    private var correctly = 0
-
     private lateinit var textViewQuestion: TextView
     private lateinit var buttonTrue: Button
     private lateinit var buttonFalse: Button
@@ -117,12 +114,12 @@ class MainActivity : AppCompatActivity() {
     private fun checkAnswer(userAnswer: Boolean, view: View) {
         if (!quizViewModel.currentQuestionIsAnswered) {
             quizViewModel.currentQuestionIsAnswered = true
-            completed++
+            quizViewModel.completed++
 
             val messageResId = when {
                 quizViewModel.currentIsCheater -> R.string.answer_cheat
                 userAnswer == quizViewModel.currentQuestionAnswer -> {
-                    correctly++
+                    quizViewModel.correctly++
                     R.string.answer_true
                 }
                 else -> R.string.answer_false
@@ -135,9 +132,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isCompletedTest(view: View) {
-        if (completed == quizViewModel.questionBankSize) {
+        if (quizViewModel.completed == quizViewModel.questionBankSize) {
             var message = getString(R.string.result)
-            message = message + " " + (correctly.toDouble() / completed.toDouble()) * 100 + '%'
+            message = message + " " + (quizViewModel.correctly.toDouble() / quizViewModel.completed.toDouble()) * 100 + '%'
             Snackbar.make(this, view, message, Snackbar.LENGTH_SHORT).show()
         }
     }
