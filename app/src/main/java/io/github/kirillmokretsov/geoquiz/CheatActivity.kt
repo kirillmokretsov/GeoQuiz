@@ -3,6 +3,7 @@ package io.github.kirillmokretsov.geoquiz
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -24,6 +25,7 @@ class CheatActivity : AppCompatActivity() {
     }
 
     private lateinit var textViewAnswer: TextView
+    private lateinit var textViewAPI: TextView
     private lateinit var buttonShowAnswer: Button
 
     companion object {
@@ -43,6 +45,8 @@ class CheatActivity : AppCompatActivity() {
 
         textViewAnswer = findViewById(R.id.text_view_answer)
         buttonShowAnswer = findViewById(R.id.button_show_answer)
+
+        findViewById<TextView>(R.id.text_view_api).setText("API Level " + Build.VERSION.SDK_INT)
 
         buttonShowAnswer.setOnClickListener {
             cheatViewModel.isResultShown = true
