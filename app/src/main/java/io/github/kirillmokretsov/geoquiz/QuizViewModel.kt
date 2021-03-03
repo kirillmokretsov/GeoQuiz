@@ -16,7 +16,6 @@ class QuizViewModel : ViewModel() {
         Question(R.string.question_question, true)
     )
     private var index = 0
-    private var isCheater = false
 
     val questionBankSize: Int
         get() = questionBank.size
@@ -28,9 +27,9 @@ class QuizViewModel : ViewModel() {
         }
 
     var currentIsCheater: Boolean
-        get() = isCheater
+        get() = questionBank[index].isCheated
         set(value) {
-            isCheater = value
+            questionBank[index].isCheated = value
         }
 
     val currentQuestionAnswer: Boolean
