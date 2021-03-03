@@ -79,7 +79,13 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity,
                     quizViewModel.currentQuestionAnswer
                 ), REQUEST_CODE_CHEAT,
-                ActivityOptionsCompat.makeClipRevealAnimation(it, it.scrollX, it.scrollY, it.width, it.height)
+                ActivityOptionsCompat.makeClipRevealAnimation(
+                    it,
+                    it.scrollX,
+                    it.scrollY,
+                    it.width,
+                    it.height
+                )
                     .toBundle()
             )
         }
@@ -141,10 +147,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun isCompletedTest(view: View) {
         if (quizViewModel.completed == quizViewModel.questionBankSize) {
-            var message = getString(R.string.result)
-            message =
-                message + " " + (quizViewModel.correctly.toDouble() / quizViewModel.completed.toDouble()) * 100 + '%'
-            Snackbar.make(this, view, message, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(
+                this,
+                view,
+                String.format(
+                    resources.getString(R.string.result),
+                    ((quizViewModel.correctly.toDouble() / quizViewModel.completed.toDouble()) * 100).toString(),
+                    '%'
+                ),
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 }
