@@ -18,6 +18,7 @@ private const val KEY_IS_ANSWERED = "is_answered"
 private const val KEY_IS_CHEATER = "is_cheater"
 private const val KEY_COMPLETED = "completed"
 private const val KEY_CORRECTLY = "correctly"
+private const val KEY_CHEATS_LEFT = "cheats_left"
 private const val REQUEST_CODE_CHEAT = 0
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         quizViewModel.currentQuestionIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
         quizViewModel.completed = savedInstanceState?.getInt(KEY_COMPLETED, 0) ?: 0
         quizViewModel.correctly = savedInstanceState?.getInt(KEY_CORRECTLY, 0) ?: 0
+        quizViewModel.cheatsLeft = savedInstanceState?.getInt(KEY_CHEATS_LEFT) ?: 3
         val isAnsweredArray = savedInstanceState?.getBooleanArray(KEY_IS_ANSWERED)
         val isCheatedArray = savedInstanceState?.getBooleanArray(KEY_IS_CHEATER)
         for (a in quizViewModel.questionBank.indices) {
@@ -77,7 +79,8 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(
                 CheatActivity.newIntent(
                     this@MainActivity,
-                    quizViewModel.currentQuestionAnswer
+                    quizViewModel.currentQuestionAnswer,
+                    quizViewModel.cheatsLeft
                 ), REQUEST_CODE_CHEAT,
                 ActivityOptionsCompat.makeClipRevealAnimation(
                     it,
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
         outState.putInt(KEY_INDEX, quizViewModel.currentQuestionIndex)
         outState.putInt(KEY_COMPLETED, quizViewModel.completed)
         outState.putInt(KEY_CORRECTLY, quizViewModel.correctly)
+        outState.putInt(KEY_CHEATS_LEFT, quizViewModel.cheatsLeft)
         outState.putBooleanArray(KEY_IS_ANSWERED, arrayIsAnswered)
         outState.putBooleanArray(KEY_IS_CHEATER, arrayIsCheater)
     }
@@ -116,11 +120,13 @@ class MainActivity : AppCompatActivity() {
 
         if (resultCode != Activity.RESULT_OK) return
 
-        if (requestCode == REQUEST_CODE_CHEAT)
+        if (requestCode == REQUEST_CODE_CHEAT) {
             quizViewModel.currentIsCheater =
                 data?.getBooleanExtra(
                     EXTRA_ANSWER_SHOWN, false
                 ) ?: false
+            quizViewModel.cheatsLeft--
+        }
     }
 
     private fun updateQuestion() = textViewQuestion.setText(quizViewModel.currentQuestionText)

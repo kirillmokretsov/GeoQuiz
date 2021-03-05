@@ -18,6 +18,7 @@ class QuizViewModel : ViewModel() {
     private var index = 0
     var completed = 0
     var correctly = 0
+    var cheatsLeft = 3
 
     val questionBankSize: Int
         get() = questionBank.size

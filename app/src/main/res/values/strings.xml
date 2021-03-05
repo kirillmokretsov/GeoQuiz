@@ -12,6 +12,8 @@
     <string name="answer_show">Show answer</string>
     <string name="button_cheat">Cheat!</string>
     <string name="answer_cheat">Cheating is wrong</string>
+    <string name="cheats_left">Cheats left %1$d</string>
+    <string name="cheats_used">You have used all your cheats</string>
     <string name="api_level">API Level %1$d</string>
 
     <!--    Questions -->

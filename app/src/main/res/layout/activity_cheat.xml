@@ -32,6 +32,14 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_cheats_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        tools:text="Cheats left"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_api"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
